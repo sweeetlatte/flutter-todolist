@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'widgets/task_widget.dart';
+import 'widgets/modal_add.dart';
 
 void main() {
   runApp(const MaterialApp(
@@ -21,38 +23,38 @@ class MyApp extends StatelessWidget {
         backgroundColor: const Color(0xff0d0d0d),
       ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+        padding: const EdgeInsets.fromLTRB(20, 20, 20, 78),
         child: Column(
-          children: [
-            Container(
-              width: double.infinity,
-              height: 74,
-              margin: EdgeInsets.only(bottom: 12),
-              decoration: BoxDecoration(
-                border: Border.all(width: 1.5, color: const Color(0xff0d0d0d)),
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(12),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: const [
-                    Text('Do the homework'),
-                    Icon(
-                      Icons.delete,
-                      color: Color(0xff0d0d0d),
-                    )
-                  ],
-                ),
-              ),
-            ),
+          children: const [
+            TaskWidget(),
+            TaskWidget(),
+            TaskWidget(),
+            TaskWidget(),
+            TaskWidget(),
+            TaskWidget(),
+            TaskWidget(),
+            TaskWidget(),
+            TaskWidget(),
+            TaskWidget(),
+            TaskWidget(),
+            TaskWidget(),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: const Color(0xff0d0d0d),
         child: const Icon(Icons.add),
-        onPressed: () {},
+        onPressed: () {
+          showModalBottomSheet(
+              context: context,
+              isScrollControlled: true,
+              builder: (BuildContext content) {
+                return Padding(
+                  padding: MediaQuery.of(context).viewInsets,
+                  child: const ModalAdd(),
+                );
+              });
+        },
       ),
     );
   }
