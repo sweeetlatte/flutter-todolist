@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 
 class TaskWidget extends StatelessWidget {
-  const TaskWidget({
+  TaskWidget({
     Key? key,
+    required this.item,
   }) : super(key: key);
+
+  var item;
 
   @override
   Widget build(BuildContext context) {
@@ -19,9 +22,9 @@ class TaskWidget extends StatelessWidget {
         padding: const EdgeInsets.all(12),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: const [
-            Text('Do the homework'),
-            Icon(
+          children: [
+            Text(item.name),
+            const Icon(
               Icons.check_circle_outline_rounded,
               color: Color(0xff0d0d0d),
             )
