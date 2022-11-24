@@ -58,6 +58,12 @@ class _MyAppState extends State<MyApp> {
     });
   }
 
+  void _handleCheckTask(String id) {
+    setState(() {
+      tasks.removeWhere((task) => task.id == id);
+    });
+  }
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -71,7 +77,12 @@ class _MyAppState extends State<MyApp> {
       body: SingleChildScrollView(
         padding: const EdgeInsets.fromLTRB(20, 20, 20, 78),
         child: Column(
-          children: tasks.map((task) => TaskWidget(item: task)).toList(),
+          children: tasks
+              .map((task) => TaskWidget(
+                    item: task,
+                    handleCheckTask: _handleCheckTask,
+                  ))
+              .toList(),
         ),
       ),
       floatingActionButton: FloatingActionButton(
